@@ -118,8 +118,9 @@ MonoBehaviour:
   _renderer: {fileID: 4293833403483298817}
   _movement:
     _speed: 1
-  _stayDistance: 3
+  _stayDistance: 1
   _splitsLeft: 2
+  _timeUntilDamage: 3
 --- !u!54 &3846676111672360193
 Rigidbody:
   m_ObjectHideFlags: 0
