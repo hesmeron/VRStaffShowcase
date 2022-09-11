@@ -7,6 +7,8 @@ public class WaypointList : MonoBehaviour
 {
     [SerializeField] private Transform[] _waypoints;
 
+    public Transform[] Waypoints => _waypoints;
+
     private void OnDrawGizmos()
     {
         foreach (var waypoint in _waypoints)

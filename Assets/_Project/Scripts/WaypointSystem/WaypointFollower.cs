@@ -2,32 +2,36 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaypointFollower : MonoBehaviour
+public class WaypointFollower
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private Transform[] _startWaypoints = Array.Empty<Transform>();
-    [SerializeField] private float _completionDistance = 0.05f;
+    private float _speed;
+    private float _completionDistance;
     private Queue<Transform> _waypointsQueue = new Queue<Transform>();
     private Movement _movement;
-
-    private void OnDrawGizmosSelected()
+    
+    public WaypointFollower(Transform transform, float _speed, float completionDistance)
     {
-        foreach (var waypoint in _startWaypoints)
+        _completionDistance = completionDistance;
+        _movement = new Movement(new MovementData(transform, _speed));
+    }
+
+    public void OnDrawGizmos()
+    {
+        foreach (var waypoint in _waypointsQueue)
         {
-            Gizmos.DrawSphere(waypoint.position, _completionDistance);           
+            Gizmos.DrawCube(waypoint.position, Vector3.one);
         }
     }
 
-    private void Start()
+    public void EnqueueWaypoints(Transform[] waypoints)
     {
-        _movement = new Movement(new MovementData(transform, _speed));
-        foreach (var waypoint in _startWaypoints)
+        foreach (var waypoint in waypoints)
         {
             _waypointsQueue.Enqueue(waypoint);
         }
     }
 
-    private void Update()
+    public void FollowWaypoint()
     {
         if (_waypointsQueue.Count > 0)
         {

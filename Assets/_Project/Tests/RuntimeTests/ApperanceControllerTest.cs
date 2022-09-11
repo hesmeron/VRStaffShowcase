@@ -8,14 +8,14 @@ using Assert = UnityEngine.Assertions.Assert;
 
 public class ApperanceControllerTest
 {
-    private ApperanceController _apperanceController;
+    private AppearanceController _appearanceController;
     private Material _material;
     //OIn the future this script will uise configuation files used in gameplay instead of mock data
     [SetUp]
     public void OnSetup()
     {
         _material = GameObject.CreatePrimitive(PrimitiveType.Cube).GetComponent<MeshRenderer>().CloneAndAssignMaterial();
-        _apperanceController = new ApperanceController(_material, 
+        _appearanceController = new AppearanceController(_material, 
                                             Color.black,
                                             Color.white,
                                             "_EmissionColor");
@@ -27,7 +27,7 @@ public class ApperanceControllerTest
         for (int i = 0; i < 100; i++)
         {
             float percentage = i / 100f;
-            _apperanceController.Visualize(percentage);
+            _appearanceController.Visualize(percentage);
             Color _materialColor = _material.GetColor("_EmissionColor");
             Assert.IsTrue(AreColorsSimilarEnough(
                 _materialColor,

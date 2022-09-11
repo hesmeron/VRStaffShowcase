@@ -291,7 +291,7 @@ MonoBehaviour:
   m_PoseProviderComponent: {fileID: 0}
   m_TrackingType: 0
   m_UpdateType: 0
-  m_UseRelativeTransform: 1
+  m_UseRelativeTransform: 0
 --- !u!1 &1533088406786646580
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5649649424083023507}
-  - component: {fileID: 798934600}
+  - component: {fileID: 1537220533}
   m_Layer: 0
   m_Name: NewRig
   m_TagString: Untagged
@@ -460,7 +460,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &798934600
+--- !u!114 &1537220533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,19 +469,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4309667364385710110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a15c510723072e4f941848a92527a99, type: 3}
+  m_Script: {fileID: 11500000, guid: 36ba6bf4eecc5de4eb8ec755d1cca334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _startWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _completionDistance: 0.05
 --- !u!1 &5550428751910535881
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928128e28bad2d14ab7ce5b5dafbb360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _staffLength: 2.3
+  _staffLength: 3
   _left:
     _pivot: {fileID: 7598313875856900629}
     _renderer: {fileID: 8895640076578310171}
@@ -552,7 +542,6 @@ GameObject:
   - component: {fileID: 7826745300882790827}
   - component: {fileID: 7826745300882790828}
   - component: {fileID: 1943373068}
-  - component: {fileID: 1943373067}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -659,18 +648,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1943373067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7826745300882790829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9dfcd997ca898469b15015a7326393, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8851306497113494134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,4 +1059,4 @@ MonoBehaviour:
   m_PoseProviderComponent: {fileID: 0}
   m_TrackingType: 0
   m_UpdateType: 0
-  m_UseRelativeTransform: 1
+  m_UseRelativeTransform: 0

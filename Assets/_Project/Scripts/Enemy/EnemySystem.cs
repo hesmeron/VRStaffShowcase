@@ -30,6 +30,7 @@ public class EnemySystem : MonoBehaviour
     {
         return  SpawnProjectileAtPosition(Utils.RandomEnumValue<Side>(), position, 3);
     }
+    //TO DO: Replace instantiation with object pooling
     public EnemyBehaviour SpawnProjectileAtPosition(Side side, Vector3 position, int splitsLeft)
     {
         EnemyBehaviour enemyBehaviour = Instantiate(_enemyBehaviourPrefab);

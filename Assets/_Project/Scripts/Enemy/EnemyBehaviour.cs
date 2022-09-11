@@ -14,7 +14,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Movement _movement;
     private PlayerBehaviour _player;
     private FixedTimeEventHandler _damageDealtTimer;
-    private ApperanceController _appearanceController;
+    private AppearanceController _appearanceController;
     private EnemyDamageReceiver _enemyDamageReceiver;
 #endregion
 
@@ -27,7 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyDamageReceiver.OnEnemyDestroyed += OnEnemyDestroyed;
         
         Material material = _renderer.CloneAndAssignMaterial(_config.GetMaterial(side));
-        _appearanceController = new ApperanceController(material,
+        _appearanceController = new AppearanceController(material,
                                              Color.black, 
                                               _config.DamagingEmissionColor,
                                                        _config.PropertyName);

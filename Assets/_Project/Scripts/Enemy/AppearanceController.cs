@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class ApperanceController
+public class AppearanceController
 {
-    private Material _material;
-    private Color _inactiveColor;
-    private Color _activeColor;
+    private readonly Material _material;
+    private readonly Color _inactiveColor;
+    private readonly Color _activeColor;
     private readonly int EmissionColor;
 
-    public ApperanceController(Material material, Color inactiveColor, Color activeColor, string propertyName)
+    public AppearanceController(Material material, Color inactiveColor, Color activeColor, string propertyName)
     {
         _inactiveColor = inactiveColor;
         _activeColor = activeColor;

@@ -19,6 +19,8 @@ public class ArenaBehaviour : MonoBehaviour
 
     private EnemySpawnManager _enemySpawnManager;
 
+    public WaypointList WaypointList => _waypointList;
+
     void Start()
     {
         _enemySpawnManager = new EnemySpawnManager(_spawnRange,
