@@ -46,8 +46,16 @@ public static class Utils
     public static Material CloneAndAssignMaterial(this MeshRenderer renderer)
     {
         Material material = renderer.material;
+        return renderer.CloneAndAssignMaterial(material);
+
+    }
+    
+    public static Material CloneAndAssignMaterial(this MeshRenderer renderer, Material material)
+    {
         material = new Material(material);
         renderer.material = material;
         return material;
     }
+    
+    
 }

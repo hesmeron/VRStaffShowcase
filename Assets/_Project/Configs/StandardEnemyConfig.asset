@@ -18,3 +18,5 @@ MonoBehaviour:
   _splitsLeft: 0
   _timeUntilDamage: 6
   _speed: 1.75
+  _damagingEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _propertyName: _EmissionColor

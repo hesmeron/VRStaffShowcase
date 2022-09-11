@@ -26,10 +26,11 @@ public class EnemyBehaviour : Controller<EnemySystem>
         _enemyDamageReceiver = new EnemyDamageReceiver(side, _config.SplitsLeft, transform, system);
         _enemyDamageReceiver.OnEnemyDestroyed += OnEnemyDestroyed;
         
-        Material material = _renderer.CloneAndAssignMaterial();
+        Material material = _renderer.CloneAndAssignMaterial(_config.GetMaterial(side));
         _appearanceController = new ApperanceController(material,
                                              Color.black, 
-                                              _config.DamagingEmissionColor);
+                                              _config.DamagingEmissionColor,
+                                                       _config.PropertyName);
         
         _damageDealtTimer = new FixedTimeEventHandler(_config.TimeUntilDamage);
         _damageDealtTimer.OnCountdownChanged += _appearanceController.Visualize;
@@ -44,7 +45,7 @@ public class EnemyBehaviour : Controller<EnemySystem>
 
     private void OnEnemyDestroyed()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     private void OnDamageCountdownCompleted()

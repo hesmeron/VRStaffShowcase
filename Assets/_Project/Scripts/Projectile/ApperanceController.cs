@@ -7,13 +7,14 @@ public class ApperanceController
     private Material _material;
     private Color _inactiveColor;
     private Color _activeColor;
-    private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+    private readonly int EmissionColor;
 
-    public ApperanceController(Material material, Color inactiveColor, Color activeColor)
+    public ApperanceController(Material material, Color inactiveColor, Color activeColor, string propertyName)
     {
         _inactiveColor = inactiveColor;
         _activeColor = activeColor;
         _material = material;
+        EmissionColor = Shader.PropertyToID(propertyName);
     }
     
     public void Visualize(float timePassedPercentage)

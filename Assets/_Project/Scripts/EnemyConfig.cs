@@ -19,6 +19,11 @@ public class EnemyConfig : ScriptableObject
     [SerializeField] 
     private Color _damagingEmissionColor;
 
+    public string PropertyName => _propertyName;
+
+    [SerializeField] 
+    private string _propertyName;
+
     public float StayDistance => _stayDistance;
 
     public int SplitsLeft => _splitsLeft;
