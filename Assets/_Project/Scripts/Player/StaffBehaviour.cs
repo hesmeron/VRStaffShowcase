@@ -33,7 +33,7 @@ public class StaffSide
     {
         if (hit.transform.gameObject.TryGetComponent(out EnemyBehaviour destructable))
         {
-            destructable.ReceiveDamage(_side, hit.point - _previousPosition);
+            destructable.EnemyDamageReceiver.ReceiveDamage(_side, hit.point - _previousPosition);
             _previousPosition = hit.point;
         }
     }

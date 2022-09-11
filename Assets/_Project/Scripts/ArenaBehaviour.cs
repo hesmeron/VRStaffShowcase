@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -51,7 +48,7 @@ public class ArenaBehaviour : MonoBehaviour
             _spawnLimit--;
             EnemyBehaviour newEnemy = _enemySpawners.RandomElement().SpawnProjectile();
             _aliveEnemiesCount++;
-            newEnemy.OnEnemyDestroyed  += OnEnemyDestroyed;
+            newEnemy.EnemyDamageReceiver.OnEnemyDestroyed  += OnEnemyDestroyed;
         }
     }
 

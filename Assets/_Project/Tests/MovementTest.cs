@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -12,8 +11,8 @@ public class MovementTest
     [SetUp]
     public void OnSetup()
     {
+        _transform = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
         _movement = new Movement(new MovementData(_transform, 300f));
-         _transform = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
     }
     
     [UnityTest]

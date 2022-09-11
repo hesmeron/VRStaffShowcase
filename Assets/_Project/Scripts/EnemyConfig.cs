@@ -16,6 +16,8 @@ public class EnemyConfig : ScriptableObject
     private float _timeUntilDamage= 3f;
     [SerializeField] 
     private float _speed = 3f;
+    [SerializeField] 
+    private Color _damagingEmissionColor;
 
     public float StayDistance => _stayDistance;
 
@@ -24,6 +26,8 @@ public class EnemyConfig : ScriptableObject
     public float TimeUntilDamage => _timeUntilDamage;
 
     public float Speed => _speed;
+
+    public Color DamagingEmissionColor => _damagingEmissionColor;
 
     public Material GetMaterial(Side side)
     {
