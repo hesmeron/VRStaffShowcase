@@ -32,4 +32,9 @@ public static class Utils
         float a = Mathf.Lerp(from.a, to.a, amount);
         return new Color(r,g,b, a);
     }
+
+    public static T RandomElement<T>(this T[] array)
+    {
+        return array[(_R.Next(array.Length))];
+    }
 }

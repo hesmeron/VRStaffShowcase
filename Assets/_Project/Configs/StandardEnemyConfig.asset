@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0224c63954d33544ea084dfc8fc054f1, type: 3}
+  m_Name: StandardEnemyConfig
+  m_EditorClassIdentifier: 
+  _leftMaterial: {fileID: 2100000, guid: d619d131b54e0604d9aa4c4f208f3f41, type: 2}
+  _rightMaterial: {fileID: 2100000, guid: f8db45486bd21164ab16862a9eddaeba, type: 2}
+  _stayDistance: 1
+  _splitsLeft: 0
+  _timeUntilDamage: 6
+  _speed: 1.75

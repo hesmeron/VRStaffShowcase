@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Creates instance of selected materiall and assigns it to renderer. 
+/// Creates instance of selected material and assigns it to renderer. 
 /// </summary>
 public class MaterialController
 {

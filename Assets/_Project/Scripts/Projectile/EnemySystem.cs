@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class EnemySystem : MonoBehaviour
 {
     [SerializeField] 
     private GameMediator _gameMediator;
     [SerializeField]
     private EnemyBehaviour _enemyBehaviourPrefab;
-
 
     public void SpawnOppositeSideProjectile(Side side, Vector3 position, int splitsLeft)
     {
@@ -25,15 +26,16 @@ public class EnemySystem : MonoBehaviour
         SpawnProjectileAtPosition(side, position, splitsLeft);
     }
 
-    public void SpawnRandomProjectileAtPosition(Vector3 position)
+    public EnemyBehaviour SpawnRandomProjectileAtPosition(Vector3 position)
     {
-        SpawnProjectileAtPosition(Utils.RandomEnumValue<Side>(), position, 3);
+        return  SpawnProjectileAtPosition(Utils.RandomEnumValue<Side>(), position, 3);
     }
-    public void SpawnProjectileAtPosition(Side side, Vector3 position, int splitsLeft)
+    public EnemyBehaviour SpawnProjectileAtPosition(Side side, Vector3 position, int splitsLeft)
     {
         EnemyBehaviour enemyBehaviour = Instantiate(_enemyBehaviourPrefab);
         enemyBehaviour.transform.position = position;
-        enemyBehaviour.Initialize(this, side, _gameMediator, splitsLeft);
+        enemyBehaviour.Initialize(this, side, _gameMediator);
+        return enemyBehaviour;
     }
 
 

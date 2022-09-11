@@ -12,9 +12,8 @@ public class MovementTest
     [SetUp]
     public void OnSetup()
     {
-        _movement = new Movement();
+        _movement = new Movement(new MovementData(_transform, 300f));
          _transform = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-        _movement.Initialize(_transform, 300f);
     }
     
     [UnityTest]

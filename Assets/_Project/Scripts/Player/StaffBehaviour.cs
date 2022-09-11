@@ -33,7 +33,7 @@ public class StaffSide
     {
         if (hit.transform.gameObject.TryGetComponent(out EnemyBehaviour destructable))
         {
-            destructable.DealDamage(_side, hit.point - _previousPosition);
+            destructable.ReceiveDamage(_side, hit.point - _previousPosition);
             _previousPosition = hit.point;
         }
     }
@@ -49,7 +49,7 @@ public class StaffSide
         return Position + armVector;
     }
 }
-public class Staff : MonoBehaviour
+public class StaffBehaviour : MonoBehaviour
 {
     [SerializeField] private float _staffLength = 2.3f;
     [SerializeField] [Required] private StaffSide _left;

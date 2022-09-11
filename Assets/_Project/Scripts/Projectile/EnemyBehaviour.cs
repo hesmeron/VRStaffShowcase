@@ -3,35 +3,28 @@ using UnityEngine;
 
 public class EnemyBehaviour : Controller<EnemySystem>
 {
-    [SerializeField] 
-    private Material _leftMaterial;
-    [SerializeField] 
-    private Material _rightMaterial;
+    public event Action OnEnemyDestroyed;
 
     [SerializeField] 
-    private Side _side;
-    [SerializeField] 
-    private MeshRenderer _renderer;
-    [SerializeField] 
-    private Movement _movement;
-    [SerializeField] 
-    private float _stayDistance;
+    private EnemyConfig _config;
     [SerializeField]
-    private int _splitsLeft = 0;
-    [SerializeField] 
-    private float _timeUntilDamage= 3f;
-
+    private MeshRenderer _renderer;
+    private Side _side;
+    private Movement _movement;
     private PlayerBehaviour _player;
     private MaterialController _materialController;
-    private float _timePassed = 0f;
+    private float _timePassed;
+    private int _splitsLeft;
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
 
-    public void Initialize(EnemySystem system, Side side, GameMediator mediator, int splitsLeft)
+    public void Initialize(EnemySystem system, Side side, GameMediator mediator)
     {
-        SetMaterial(side);
-        _splitsLeft = splitsLeft;
-        _movement.Initialize(transform);
+        _side = side;
+        _splitsLeft = _config.SplitsLeft;
+        _materialController = new MaterialController(_renderer,_config.GetMaterial(side));
+        MovementData movementData = new MovementData(transform, _config.Speed);
+        _movement = new Movement(movementData);
         base.Initialize(system);
         _player = mediator.Player;
     }
@@ -43,13 +36,9 @@ public class EnemyBehaviour : Controller<EnemySystem>
 
     private void Update()
     {
-        Vector3 target = _player.transform.position;
-        float distance = Vector3.Distance(target, transform.position);
-        if (distance > _stayDistance)
-        {
-            _movement.MoveTowards(target);
-        }
-        else
+        Vector3 target = _player.transform.position + (2f*Vector3.up);
+
+        if(_movement.MoveTowards(target, _config.StayDistance))
         {
             TryDamage();
         }
@@ -58,7 +47,7 @@ public class EnemyBehaviour : Controller<EnemySystem>
     private void TryDamage()
     {
         _timePassed += Time.deltaTime;
-        float timePassedPercentage = _timePassed / _timeUntilDamage;
+        float timePassedPercentage = _timePassed / _config.TimeUntilDamage;
         if (timePassedPercentage >= 1)
         {
             _player.GetDamaged();
@@ -75,41 +64,24 @@ public class EnemyBehaviour : Controller<EnemySystem>
         Color color = Utils.LerpColor(Color.black, damagingColor, timePassedPercentage);
         _materialController.Material.SetColor(EmissionColor, color);
     }
-
-    private void SetMaterial(Side side)
-    {
-        Material material;
-        switch (side)
-        {
-            case Side.Left:
-                material = _leftMaterial;
-                break;
-            case Side.Right:
-                material = _rightMaterial;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(side), side, null);
-        }
-
-        _materialController = new MaterialController(_renderer, material);
-    }
-
     /// <summary>
     /// Called when enemy is hit with the staff
     /// </summary>
     /// <param name="side">Side which hit the enemy</param>
     /// <param name="damageVector">A vector that staff traveled previous frame</param>
-    public void DealDamage(Side side, Vector3 damageVector)
+    public void ReceiveDamage(Side side, Vector3 damageVector)
     {
         if (side == _side)
         {
             if (_splitsLeft > 0)
             {
-                //SpawnLegacyProjectiles(damageVector);
+                SpawnLegacyProjectiles(damageVector);
             }
+            OnEnemyDestroyed?.Invoke();
             Destroy(this.gameObject);
         }
     }
+    
     /// <summary>
     /// Spawns projectiles after this one is destroyed
     /// </summary>

@@ -1,27 +1,36 @@
 using UnityEngine;
+using Time = UnityEngine.Time;
 
+[System.Serializable]
+public struct MovementData
+{
+    public float Speed;
+    public Transform Transform;
+
+    public MovementData (Transform transform, float speed)
+    {
+        Speed = speed;
+        Transform = transform;
+    }
+}
 [System.Serializable]
 public class Movement
 {
-    [SerializeField] 
     private float _speed;
     private Transform _transform;
 
-    public void Initialize(Transform transform)
+    public Movement(MovementData data)
     {
-        _transform = transform;
+        _speed = data.Speed;
+        _transform = data.Transform;
     }
-    public void Initialize(Transform transform, float speed)
-    {
-        _transform = transform;
-        _speed = speed;
-    }
-    public void MoveTowards(Vector3 targetPosition)
+    public bool MoveTowards(Vector3 targetPosition, float stayDistance = 0f)
     {
         Vector3 direction = targetPosition - _transform.position;
         RotateTowards(direction);
-        float distance = Mathf.Min(Time.deltaTime * _speed, direction.magnitude);
+        float distance = Mathf.Min(Time.deltaTime * _speed, direction.magnitude - stayDistance);
         _transform.position += _transform.forward * distance;
+        return direction.magnitude - distance <= stayDistance;
     }
 
     private void RotateTowards(Vector3 direction)
