@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyBehaviour : Controller<EnemySystem>
+public class EnemyBehaviour : MonoBehaviour
 {
 #region References
     [SerializeField] 
@@ -40,7 +40,6 @@ public class EnemyBehaviour : Controller<EnemySystem>
         _movement = new Movement(movementData);
         
         _player = mediator.Player;
-        base.Initialize(system);
     }
 
     private void OnEnemyDestroyed()
@@ -53,11 +52,6 @@ public class EnemyBehaviour : Controller<EnemySystem>
         _player.GetDamaged();
     }
     
-    private void OnEnable()
-    {
-        _damageDealtTimer.ResetCountdown();
-    }
-
     private void Update()
     {
         Vector3 target = _player.transform.position + (2f*Vector3.up);

@@ -8,6 +8,7 @@ public class WaypointFollower : MonoBehaviour
     [SerializeField] private Transform[] _startWaypoints = Array.Empty<Transform>();
     [SerializeField] private float _completionDistance = 0.05f;
     private Queue<Transform> _waypointsQueue = new Queue<Transform>();
+    private Movement _movement;
 
     private void OnDrawGizmosSelected()
     {
@@ -19,6 +20,7 @@ public class WaypointFollower : MonoBehaviour
 
     private void Start()
     {
+        _movement = new Movement(new MovementData(transform, _speed));
         foreach (var waypoint in _startWaypoints)
         {
             _waypointsQueue.Enqueue(waypoint);
@@ -29,9 +31,9 @@ public class WaypointFollower : MonoBehaviour
     {
         if (_waypointsQueue.Count > 0)
         {
-            Vector3 direction = _waypointsQueue.Peek().transform.position - transform.position;
-            transform.position += direction.normalized * (_speed * Time.deltaTime);
-            if (direction.magnitude <= _completionDistance)
+            Vector3 target = _waypointsQueue.Peek().transform.position;
+            bool reachedCurrentWaypoint = _movement.MoveTowards(target, _completionDistance);
+            if(reachedCurrentWaypoint)
             {
                 _waypointsQueue.Dequeue();
             }

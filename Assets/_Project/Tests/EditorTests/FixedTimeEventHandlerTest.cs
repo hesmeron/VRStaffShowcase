@@ -38,7 +38,7 @@ public class FixedTimeEventHandlerTest
     [TearDown]
     public void OnTeardown()
     {
-        Time.timeScale = 100f;
+        Time.timeScale = 1f;
     }
 
     [UnityTest]

@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : Controller<EnemySystem>
+public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private EnemySystem _system;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -13,7 +14,6 @@ public class EnemySpawner : Controller<EnemySystem>
     
     public EnemyBehaviour SpawnProjectile()
     {
-       
-        return  System.SpawnRandomProjectileAtPosition(transform.position);
+        return  _system.SpawnRandomProjectileAtPosition(transform.position);
     }
 }

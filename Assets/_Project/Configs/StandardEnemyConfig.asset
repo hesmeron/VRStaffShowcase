@@ -16,7 +16,7 @@ MonoBehaviour:
   _rightMaterial: {fileID: 2100000, guid: f8db45486bd21164ab16862a9eddaeba, type: 2}
   _stayDistance: 1
   _splitsLeft: 0
-  _timeUntilDamage: 6
+  _timeUntilDamage: 3
   _speed: 1.75
-  _damagingEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  _damagingEmissionColor: {r: 1, g: 1, b: 1, a: 0}
   _propertyName: _EmissionColor
