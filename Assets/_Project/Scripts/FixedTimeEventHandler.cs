@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FixedTimeEventHandler
@@ -13,6 +11,7 @@ public class FixedTimeEventHandler
     public FixedTimeEventHandler(float completionTime)
     {
         _completionTime = completionTime;
+        ResetCountdown();
     }
 
     public void ResetCountdown()
@@ -22,14 +21,11 @@ public class FixedTimeEventHandler
     public void ProgressTimer()
     {
         _timePassed += Time.deltaTime;
-        float timePassedPercentage = _timePassed / _completionTime;
+        float timePassedPercentage = Mathf.Clamp01(_timePassed / _completionTime);
+        OnCountdownChanged?.Invoke(timePassedPercentage);
         if (timePassedPercentage >= 1)
         {
             OnCountdownCompleted?.Invoke();
-        }
-        else
-        {
-            OnCountdownChanged?.Invoke(timePassedPercentage);
         }
     }
 }
